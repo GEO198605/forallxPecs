@@ -138,12 +138,19 @@ a(\script{P}) =
 
 This means that $a$ takes any sentence of SL and assigns it either a one or a zero; one if the sentence is true, zero if the sentence is false. The details of the function $a$ are determined by the meaning of the sentence letters together with the state of the world. If $D$ means `It is dark outside', then $a(D)=1$ at night or during a heavy storm, while $a(D)=0$ on a clear day.
 
+HUN: Ez azt jelenti, hogy $a$ bármilyen mondatot felvesz SL-ből és hozzáköt egy egyest vagy egy nullát; egy, ha a mondat igaz és 0, ha a mondat hamis. $a$ függvény részleteinek jelentését a mondat betűi együtt határozzák meg a szavak állításaival együtt. Ha $D$ jelentése `Sötét van odakinnt`, akkor $a(D)=1$ este egy nagy vihar alkalmával, miközben $a(D)=0$ egy derűs napot jelent.
+
 You can think of $a$ as being like a row of a truth table. Whereas a truth table row assigns a truth value to a few atomic sentences, the truth value assignment assigns a value to every atomic sentence of SL. There are infinitely many sentence letters, and the truth value assignment gives a value to each of them. When constructing a truth table, we only care about sentence letters that affect the truth value of sentences that interest us. As such, we ignore the rest. Strictly speaking, every row of a truth table gives a \emph{partial} truth value assignment.
+
+HUN: $a$-ra gondolhatunk úgy is, mintha egy igazságtábla egy sora lenne. Ahol az igazságtábla sora hozzáköt egy igazságértéket néhány atomi mondathoz, az igazságérték feladata hozzákötni egy értéket minden atomi SL mondathoz. Végtelenül sok mondat betű van, ahol az igazságváltozó feladata, hogy mindenhová értéket rendeljen. Amikor egy igazságtáblát szerkesztünk, a mondatnak csak azon betűivel foglalkozunk, amik befolyásolják a mondat igazságtartalmát (értékét) és mint olyan, a többi részével nem foglalkozunk. Tulajdonképpen minden sora az igazságtáblának egy \emph{partial} igazságérték hozzárendelést ad.
 
 It is important to note that the truth value assignment, $a$, is not part of the language SL. Rather, it is part of the mathematical machinery that we are using to describe SL. It encodes which atomic sentences are true and which are false.
 
+HUN: Fontos megjegyezni, hogy az $a$ igazságérték hozzárendelés nem része SL nyelvezetének, ez inkább egy matematikai gépezet része, amit az SL leírásához, jellemzéséhez használunk. Azt kódolja, hogy az atomi mondatnak mely része igaz vagy hamis.
 
 We now define the truth function, $v$, using the same recursive structure that we used to define a wff of SL.
+
+HUN: Most meghatározzuk az igazságfüggvényt ($v$), ugyanazt a rekúrzív struktúrát használva, amit a wff SL meghatározásánál is használtunk.
 
 \begin{enumerate}
 \item If \script{A} is a sentence letter, then $v(\script{A})=a(\script{A})$.
@@ -153,7 +160,18 @@ We now define the truth function, $v$, using the same recursive structure that w
 % going on. Using \setcounter in this way preserves the numbering, so
 % that the list can resume after the comments.
 
+HUN:
+\kezdődik{felsorolás}
+\tétel Ha \forgatókönyv{A} egy mondat betűje, akkor $v(\forgatókönyv{A})=a(\forgatókönyv{A})$.
+%\számláló beállítása{Példa}{\arab{enumi}}\vége{felsorolás}
+%...
+% Kitörni a {enumerate} a környezetből hogy mondjunk valamit arról, hogy
+% mi folyik itt. A \számláló beállításának használata ebben az esetben megőrzi a számozást, így
+% aztán a lista folytatódhat a hozzászólások után.
+
 %This is a mathematical equals sign, not the identity predicate we defined for QL.
+
+HUN: %Ez egy matematikai egyenlőségjel, nem az egyéni állítmány amit meghatároztunk a QL-nek.
 
 % Resume the {enumerate} environment and restore the counter.
 %...
@@ -176,7 +194,31 @@ We now define the truth function, $v$, using the same recursive structure that w
 \setcounter{Example}{\arabic{enumi}}\end{enumerate}
 %...
 
+HUN:
+% Folytassuk {felsorolás} a környezetet és állítsuk vissza a számlálót.
+%...
+%\kezdődik{felsorolás}\számláló beállítása{enumi}{\arab{Példa}}
+\tétel Ha \forgatókönyv{A} van ${\enot}\forgatókönyv{B}$ néhány mondat számára \forgatókönyv{B}, akkor
+\kezdődik{matematikai változó kijelzése}v(\forgatókönyv{A}) =
+	\bal\{\kezdődik{tömb}{ll}
+	1 & \mbox{ha $v(\forgatókönyv{B}) = 0$},\\
+	0 & \mbox{egyébként.}
+	\vége{tömb}\jobb.
+\vége{matematikai változó kijelzése}
+
+\tétel Ha \forgatókönyv{A} van $(\forgatókönyv{B}\eand\forgatókönyv{C})$ néhány mondat számára \forgatókönyv{B,C}, akkor
+\kezdődik{matematikai változó kijelzése}v(\forgatókönyv{A}) =
+	\bal\{\kezdődik{tömb}{ll}
+	1 & \mbox{ha $v(\forgatókönyv{B}) = 1$ és $v(\forgatókönyv{C}) = 1$,}\\
+	0 & \mbox{egyébként.}
+	\vége{tömb}\jobb.
+\vége{matematikai változó kijelzése}
+\számláló beállítása{Példa}{\arab{enumi}}\vége{felsorolás}
+%...
+
 It might seem as if this definition is circular, because it uses the word `and' in trying to define `and.' Notice, however, that this is not a definition of the English word `and'; it is a definition of truth for sentences of SL containing the logical symbol `\eand.' We define truth for object language sentences containing the symbol `\eand' using the metalanguage word `and.' There is nothing circular about that.
+
+HUN: Úgy tűnhet, hogy ez a meghatározás körkörös, mivel használja az `és` szót miközben megpróbálja meghatározni azt. Megjegyzendő, hogy ez nem az angol `és` szó meghatározása; ez az igazságtartalmú mondatok meghatározása melyek az `\eand.` logikai szimbólumtartalmú SL-hez tartoznak. Az igazságot olyan tárgyi nyelv számára határozzuk meg, amely tartalmazza az `\eand` szimbólumot és `and` metanyelvet használ. Itt semmilyen körkörös folyamat nincs.
 
 %...
 \begin{enumerate}\setcounter{enumi}{\arabic{Example}}
@@ -199,6 +241,29 @@ It might seem as if this definition is circular, because it uses the word `and' 
 	1 & \mbox{otherwise.}
 	\end{array}\right.
 \end{displaymath}
+
+HUN:
+%...
+\kezdődik{felsorolás}\számláló beállítása{enumi}{\arab{Példa}}
+\tétel Ha \forgatókönyv{A} van $(\forgatókönyv{B}\eor\forgatókönyv{C})$ néhány mondat számára \forgatókönyv{B,C}, akkor
+\kezdődik{matematikai változó kijelzése}v(\forgatókönyv{A}) =
+	\bal\{\kezdődik{tömb}{ll}
+	0 & \mbox{van $v(\forgatókönyv{B}) = 0$ és $v(\forgatókönyv{C}) = 0$,}\\
+	1 & \mbox{egyébként.}
+	\vége{tömb}\jobb.
+\vége{matematikai változó kijelzése}
+%\számláló beállítása{Példa}{\arab{enumi}}\vége{felsorolás}
+%...
+%Vegye figyelembe, hogy ez meghatározza az `\eor` szimbólumot tartalmazó mondatok igazságát az `és` szót használva.
+%...
+%\kezdődik{felsorolás}\számláló beállítása{enumi}{\arab{Példa}}
+\tétel Ha \forgatókönyv{A} van $(\forgatókönyv{B}\eif\forgatókönyv{C})$ néhány mondat számára \forgatókönyv{B,C}, akkor
+\kezdődik{matematikai változó kijelzése}v(\forgatókönyv{A}) =
+	\bal\{\kezdődik{tömb}{ll}
+	0 & \mbox{ha $v(\forgatókönyv{B}) = 1$ és $v(\forgatókönyv{C}) = 0$,}\\
+	1 & \mbox{egyébként.}
+	\vége{tömb}\jobb.
+\vége{matematikai változó kijelzése}
 
 %SzGyÁ fordítása vége
 
